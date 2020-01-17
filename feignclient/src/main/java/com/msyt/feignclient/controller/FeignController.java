@@ -3,6 +3,7 @@ package com.msyt.feignclient.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 1.0
  * @since 2020/1/15 17:32
  */
-@Controller
+@RestController
 public class FeignController {
     @Autowired
     CommonInterface commonInterface;
@@ -26,4 +27,12 @@ public class FeignController {
         }
         return commonInterface.print();
     }
+
+    //    @GetMapping("test1/name={name}/{age}")
+    @GetMapping("test1")
+    public String print(String name, Integer age) {
+        System.out.println(name + ":" + age);
+        return "";
+    }
+
 }
