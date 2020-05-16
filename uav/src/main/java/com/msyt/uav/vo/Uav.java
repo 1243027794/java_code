@@ -16,10 +16,10 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Uav {
 
-    private static final Double STEP = 0.000005; /*0.00005;*/
+    private static final Double STEP = 0.0005; /*0.00005;*/
     private static final Double ALTITUDE = 100.0;
     private static final Integer ALTITUDE_STEP = 2;
-    private static final Integer INTERVAL_TIME = 500;
+    private static final Integer INTERVAL_TIME = 3000;
 
     private Double fireLongitude;
     private Double fireLatitude;
@@ -74,6 +74,11 @@ public class Uav {
 
     public void takeOff(CopyOnWriteArrayList<SseEmitter> emitters, SseEmitter emitter) {
         new Thread(() -> {
+            try {
+                Thread.sleep(30000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             int flightTimes = this.stepNumber;
             int uavTakeoffTimes = 2 * flightTimes;
             boolean toFire = true;
